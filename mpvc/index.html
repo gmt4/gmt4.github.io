@@ -15,5 +15,41 @@
             <img src="https://github.com/gmt4/mpvc/raw/master/assets/mpvc-tui.png" alt="mpvc-tui" width="90%"/>
         </a>
     </p>
+
+    <h1 id="gmt4-mpvc-quickstart">@gmt4 mpvc quickstart</h1>
+
+    <pre>
+git clone https://github.com/gmt4/mpvc/
+mpvc/mpvc add /path/to/your/*.mp3 # or your URLs
+mpvc/mpvc-tui
+    </pre>
+
+    <h1 id="gmt4-mpvc-logbook">@gmt4 mpvc logbook</h1>
+
+    <strong>On playing URLs, Wed 30 Mar 2022 ✓</strong>
+    <p>
+    What got me started on using mpvc is being able to play urls. This is the cause to start writing what you are reading now (this repo at https://github.com/gmt4/mpvc/)
+    </p>
+
+    <strong>On securing mpv socket location, Mon 14 Nov 2022 ✓</strong>
+    <p>
+    One thing that bothers me when using mpvc, is that most programs performing ipc on mpv socket, just leave the socket at /tmp/mpvsocket. A better default location for the mpv socket is $HOME/.config/mpvc/mpvsocket
+    </p>
+
+    <strong>On load/save functionality, Fri 18 Nov 2022 ✓</strong>
+    <p>
+    A thing that I'd like to be able to do is to perform mpvc load/save of the playlist, and, be able of manipulating the playlist using standard Unix commands eg. grep. The easiest way that comes to mind, is something a la: mpvc save | grep -v artist | mpvc load. This enables to filter out an artist, and drop all the songs by this artist.
+    </p>
+
+    <strong>On persistent mpv startup, Sun 20 Nov 2022 ✓</strong>
+    <p>
+    One particular feature where improvement could be done mpvc -a audio.opus is finishes playing audio.opus, mpv terminates, and, the current playlist is lost. This happens as mpv is started with --idle=once. A workaround for this is to start, mpv separately. For my use of mpvc I think mpvc should start mpv separately and keep it running once playing finishes
+    </p>
+
+    <strong>On a minimal mpvc TUI, Sat 03 Dec 2022 ✓</strong>
+    <p>
+    One thing I keep doing a lot, is typing mpvc status and mpvc -i, to check the mpv playlist and status. To this end I've quickly hacked a minimal TUI https://github.com/gmt4/mpvc/blob/master/mpvc-tui, that continuously shows the mpvc playlist & status. In addition, while in mpvc-tui you can control+c, to get a mpvc prompt to run quick mpvc commands, like: prev, next, pause, toggle, seek, volume, etc.
+    </p>
+
 </body>
 </html>
