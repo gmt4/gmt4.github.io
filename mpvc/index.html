@@ -47,32 +47,32 @@ mpvc/mpvc-tui
     <hr/>
     <h2 id="gmt4-mpvc-logbook">mpvc logbook</h2>
 
-    <strong>On playing URLs, Wed 30 Mar 2022 ✓</strong>
+    <h3>On playing URLs, Wed 30 Mar 2022 ✓</h3>
     <p>
     What got me started on using mpvc is being able to play URLs. This is the cause to start writing what you are reading now (this repo at https://github.com/gmt4/mpvc/)
     </p>
 
-    <strong>On securing mpv socket location, Mon 14 Nov 2022 ✓</strong>
+    <h3>On securing mpv socket location, Mon 14 Nov 2022 ✓</h3>
     <p>
     One thing that bothers me when using mpvc, is that most programs performing ipc on mpv socket, just leave the socket at /tmp/mpvsocket. A better default location for the mpv socket is $HOME/.config/mpvc/mpvsocket
     </p>
 
-    <strong>On load/save functionality, Fri 18 Nov 2022 ✓</strong>
+    <h3>On load/save functionality, Fri 18 Nov 2022 ✓</h3>
     <p>
     A thing that I'd like to be able to do is to perform mpvc load/save of the playlist, and, be able of manipulating the playlist using standard Unix commands eg. grep. The easiest way that comes to mind, is something a la: mpvc save | grep -v artist | mpvc load. This enables to filter out an artist, and drop all the songs by this artist.
     </p>
 
-    <strong>On persistent mpv startup, Sun 20 Nov 2022 ✓</strong>
+    <h3>On persistent mpv startup, Sun 20 Nov 2022 ✓</h3>
     <p>
-    One particular feature where improvement could be done mpvc -a audio.opus is finishes playing audio.opus, mpv terminates, and, the current playlist is lost. This happens as mpv is started with --idle=once. A workaround for this is to start, mpv separately. For my use of mpvc I think mpvc should start mpv separately and keep it running once playing finishes
+    One particular feature where improvement could be done mpvc -a audio.opus, when mpv finishes playing audio.opus, mpv terminates, and, the current playlist is lost. This happens as mpv is started with --idle=once. A solution for this is to start mpv separately with --idle=yes. A shortcut for this is to run `mpvc --mpv` that does exactly this, after this the mpv instance can be manipulated with mpvc, and does not terminate once mpv finishes playing.
     </p>
 
-    <strong>On a minimal mpvc-tui, Sat 03 Dec 2022 ✓</strong>
+    <h3>On a minimal mpvc-tui, Sat 03 Dec 2022 ✓</h3>
     <p>
     One thing I keep doing a lot, is typing mpvc status and mpvc -i, to check the mpv playlist and status. To this end I've quickly hacked a minimal TUI https://github.com/gmt4/mpvc/blob/master/mpvc-tui, that continuously shows the mpvc playlist & status. In addition, while in mpvc-tui you can Control+C, to get a mpvc prompt to run quick mpvc commands, like: prev, next, pause, toggle, seek, volume, etc.
     </p>
 
-    <strong>On using the mpvc-tui prompt, Wednesday 13 Dec 2022 ✓</strong>
+    <h3>On using the mpvc-tui prompt, Wednesday 13 Dec 2022 ✓</h3>
     <p>
     As explained above, mpvc-tui does three things: 1) display status, 2) display playlist, 3) prompt the user for interaction.
 
@@ -87,10 +87,26 @@ mpvc/mpvc-tui
     When using the mpvc-tui prompt for some time, one notices that there's a lot of repetition of commands. To address repetition, one solution is to use a history file of past commands, and completion of commands & filenames. This can be achieved using `rlwrap(1)` in one shot mode that becomes a life-saver. Now, you get a more comfortable prompt, where TAB completion works on commands and filenames, as well as Control+R to repeat previous commands in the history file.
     </p>
 
-    <strong>On using the mpvc-tui -x launcher, Thursday 14 Dec 2022 ✓</strong>
+    <h3>On using the mpvc-tui -x launcher, Thursday 14 Dec 2022 ✓</h3>
     <p>
     Another nifty detail of mpvc-tui, is that it can be quickly spawn from the WM launcher by using `mpvc-tui -x`, then type a few mpvc commands to setup music, and close it. Or it can be started on the current terminal with `mpvc-tui` and left running as a long running program, and get back to it when needed.
     </p>
+
+    <h3>On managing playlists with mpvc autoload/autosave, Friday 15 Dec 2022 ✓</h3>
+    <p>
+    When using `mpc(1)`, playlists can be managed using the mpc load/save/lsplaylists commands.
+
+    In addition to load/save, mpvc adds the autoload/autosave commands:
+    <ul>
+    <li> mpvc autosave: save the current playlist to $XDG_CONFIG_HOME/mpvc/playlist/.
+         If no arguments are provided the current playlist is named "$(date -Imin)".
+         Otherwise, if a name is given "mpvc autosave ambient.m3u", then the file is saved as "ambient.m3u"
+    <li> mpvc autoload: loads the named playlist from $XDG_CONFIG_HOME/mpvc/playlist/.
+    <li> mpvc lsplaylists: list the playlists under $XDG_CONFIG_HOME/mpvc/playlist/.
+    </ul>
+
+    The above enables to arrange a playlist, and once we are happy with it, save it with `mpvc autosave playlist.m3u`, later, we can replay it again with: `mpvc autoload playlist.m3u`.
+    <p>
 
 </body>
 </html>
