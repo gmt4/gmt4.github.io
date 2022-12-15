@@ -10,7 +10,7 @@
 
 <html>
 <body>
-    <h1 id="gmt4-mpvc-fork">@gmt4 mpvc fork</h1>
+    <h1 id="gmt4-mpvc-fork">@gmt4 mpvc</h1>
     <ul>
         <li><strong>about</strong> A mpc-like control interface for mpv.</li>
         <li><strong>tags</strong> cli music-player terminal minimal mpv tui media-player mplayer posix-sh mpv-player mpvc mpvc-tui</li>
@@ -20,13 +20,16 @@
         <li><strong>discussions</strong> <a href="https://github.com/gmt4/mpvc/discussions">https://github.com/gmt4/mpvc/discussions/</a></li>
     </ul>
 
+    <hr/>
+    <h2 id="gmt4-mpvc-fork">mpvc screenshots</h2>
     <p>
         <a href="https://github.com/gmt4/mpvc/">
-            <img src="https://github.com/gmt4/mpvc/raw/master/assets/mpvc-tui.png" alt="mpvc-tui" />
+            <img src="https://github.com/gmt4/mpvc/raw/master/assets/mpvc-tui.png" alt="mpvc-tui screenshot" />
         </a>
     </p>
 
-    <h1 id="gmt4-mpvc-quickstart">@gmt4 mpvc quickstart</h1>
+    <hr/>
+    <h2 id="gmt4-mpvc-quickstart">mpvc quickstart</h2>
 
     <pre>
 git clone https://github.com/gmt4/mpvc/
@@ -34,11 +37,12 @@ mpvc/mpvc add /path/to/your/*.mp3 # or your URLs
 mpvc/mpvc-tui
     </pre>
 
-    <h1 id="gmt4-mpvc-logbook">@gmt4 mpvc logbook</h1>
+    <hr/>
+    <h2 id="gmt4-mpvc-logbook">mpvc logbook</h2>
 
     <strong>On playing URLs, Wed 30 Mar 2022 ✓</strong>
     <p>
-    What got me started on using mpvc is being able to play urls. This is the cause to start writing what you are reading now (this repo at https://github.com/gmt4/mpvc/)
+    What got me started on using mpvc is being able to play URLs. This is the cause to start writing what you are reading now (this repo at https://github.com/gmt4/mpvc/)
     </p>
 
     <strong>On securing mpv socket location, Mon 14 Nov 2022 ✓</strong>
@@ -56,9 +60,29 @@ mpvc/mpvc-tui
     One particular feature where improvement could be done mpvc -a audio.opus is finishes playing audio.opus, mpv terminates, and, the current playlist is lost. This happens as mpv is started with --idle=once. A workaround for this is to start, mpv separately. For my use of mpvc I think mpvc should start mpv separately and keep it running once playing finishes
     </p>
 
-    <strong>On a minimal mpvc TUI, Sat 03 Dec 2022 ✓</strong>
+    <strong>On a minimal mpvc-tui, Sat 03 Dec 2022 ✓</strong>
     <p>
-    One thing I keep doing a lot, is typing mpvc status and mpvc -i, to check the mpv playlist and status. To this end I've quickly hacked a minimal TUI https://github.com/gmt4/mpvc/blob/master/mpvc-tui, that continuously shows the mpvc playlist & status. In addition, while in mpvc-tui you can control+c, to get a mpvc prompt to run quick mpvc commands, like: prev, next, pause, toggle, seek, volume, etc.
+    One thing I keep doing a lot, is typing mpvc status and mpvc -i, to check the mpv playlist and status. To this end I've quickly hacked a minimal TUI https://github.com/gmt4/mpvc/blob/master/mpvc-tui, that continuously shows the mpvc playlist & status. In addition, while in mpvc-tui you can Control+C, to get a mpvc prompt to run quick mpvc commands, like: prev, next, pause, toggle, seek, volume, etc.
+    </p>
+
+    <strong>On using the mpvc-tui prompt, Wednesday 13 Dec 2022 ✓</strong>
+    <p>
+    As explained above, mpvc-tui does three things: 1) display status, 2) display playlist, 3) prompt the user for interaction.
+
+    Once we hit Control+C, and land on the user prompt, the following can be done:
+    <ol>
+    <li> run mpvc commands starting with "mpvc". This allows for manipulating the mpv/mpvc status. The commands run with "mpvc" have QUIETFLAG=true set, to not clutter the mpvc-tui.
+    <li> run shell commands internally starting with "!". This allows for commands that manipulate mpvc-tui program, such as changing the working directory, with cd/pwd. This also allows for starting your favorite editor to configure the mpvc-tui look and feel with: "!$EDITOR $MPVC_CONFIG".
+    <li> run shell commands externally starting with "!!". This allows for running commands on a separate shell. This gives room for more complex commands, like starting alsamixer to manipulate audio levels, change outputs with `pactl(1)`, etc.
+    <li> quit the mpvc-tui, by typing quit, exit, or "q".
+    </ol>
+
+    When using the mpvc-tui prompt for some time, one notices that there's a lot of repetition of commands. To address repetition, one solution is to use a history file of past commands, and completion of commands & filenames. This can be achieved using `rlwrap(1)` in one shot mode that becomes a life-saveer. Now, you get a more comfortable prompt, where TAB completion works on commands and filenames, as well as Control+R to repeat previous commands in the history file.
+    </p>
+
+    <strong>On using the mpvc-tui -x launcher, Thursday 14 Dec 2022 ✓</strong>
+    <p>
+    Another nifty detail of mpvc-tui, is that it can be quickly spawn from the WM lanucher by using `mpvc-tui -x`, then type a few mpvc commands to setup music, and close it. Or it can be started on the current terminal with `mpvc-tui` and left running as a long running program, and get back to it when needed.
     </p>
 
 </body>
