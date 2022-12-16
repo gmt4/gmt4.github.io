@@ -19,7 +19,7 @@
 
 <html>
 <body>
-    <h1 id="gmt4-mpvc-fork">@gmt4 mpvc</h1>
+    <h1 id="gmt4-mpvc-fork">@gmt4 mpvc fork</h1>
     <ul>
         <li><strong>about</strong> A minimal mpc CLI and TUI for controlling mpv.</li>
         <li><strong>tags</strong> cli music-player terminal minimal mpv tui media-player mplayer posix-sh mpv-player mpvc mpvc-tui</li>
@@ -124,13 +124,23 @@ mpvc/mpvc-tui
 
     <h3>On customizing mpvc-tui look and feel, Friday 16 Dec 2022 ✓</h3>
     <p>
-    While using mpvc-tui, one ends up wanting to configure the minimal look and feel that mpvc-tui provides. To this end the file mpvc-tui.conf under $XDG_CONFIG_HOME/mpvc/playlist/ provides a place to overwrite the look and feel default settings of mvpc-tui.
+    While using mpvc-tui, one ends up wanting to configure the minimal look and feel that mpvc-tui provides. To this end the file mpvc-tui.conf under $XDG_CONFIG_HOME/mpvc/ provides a place to overwrite the look and feel default settings of mvpc-tui.
     </p>
 
-have a
     <h3>Show HN: mpvc-tui, A minimal mpc-like cli and tui for mpv., Friday 16 Dec 2022 ✓</h3>
     <p>
     We are on "Show HN"! <a href="https://news.ycombinator.com/item?id=34013150">https://news.ycombinator.com/item?id=34013150</a>
+    </p>
+
+    <h3>On issuing direct JSON IPC commands to mpv, Saturday 17 Dec 2022 ✓</h3>
+    <p>
+    That one is easy, for that purpose "mpvc cmd args" sends the "command": args to the JSON IPC. Some usage examples to test are:
+    <ul>
+        <li> mpvc cmd show-text "hello-world" 2000
+        <li> mpvc cmd af toggle lavfi=[loudnorm=I=-16:TP=-3:LRA=4]
+        <li> mpvc cmd af toggle lavfi=[dynaudnorm=g=5:f=250:r=0.9:p=0.5]
+    </ul>
+    Note, audio filter commands above are lifted from https://github.com/mpv-player/mpv/issues/6210.
     </p>
 
 </body>
