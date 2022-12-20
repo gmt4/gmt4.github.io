@@ -147,5 +147,22 @@ make -C mpvc link BINDIR=$HOME/bin
     Note, audio filter commands above are lifted from https://github.com/mpv-player/mpv/issues/6210.
     </p>
 
+    <h3>On playing music from streaming services as youtube & co., Monday 19 Dec 2022 ✓</h3>
+    <p>
+    Mpv already play music from URLs from streaming platforms as youtube & co. So the one thing missing is to be able to search, enqueue music from these services. This is provided by mpvc-tui -s/-p, that does:
+    <ol>
+        <li>Query the Invidious API and return a list of URLs
+        <li>Use fzf -m to select from the search results.
+        <li>Use mpvc load to enqueue the selected songs into the mpv playlist.
+    </ol>
+    Some usage examples of the above are:
+    <ul>
+        <li> mpvc-tui -s rolling stones: <b>Search</b> and return the list of URLs found.
+        <li> mpvc-tui -s rolling stones | fzf -m: <b>Search, Select</b> and return the list of URLs selected.
+        <li> mpvc-tui -s rolling stones | fzf -m | mpvc load: <b>Search, Select</b> and enqueue/play the list of URLs selected.
+        <li> mpvc-tui -p rolling stones: Is a shortcut of the last command that does the whole thing.
+    </ul>
+    Note, that you can use this command from inside mpvc-tui too, by hitting Control+C and then typing "!mpvc-tui -p rolling stones"
+    </p>
 </body>
 </html>
